@@ -1,0 +1,19 @@
+{
+  "name": "spooderdeadlonks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuKyoKim/FinalProject.git"
+  },
+  "author": "Tom Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuKyoKim/FinalProject/issues"
+  },
+  "homepage": "https://github.com/JuKyoKim/FinalProject#readme"
+}
