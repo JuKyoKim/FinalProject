@@ -1,2 +1,3 @@
-# FinalProject
-SpooderdeadLonks just checks agianst all links available on a page and checks status codes on each one, and the one after
+#Final Project
+###SpooderDeadLonks!
+The basic concept of this web application is to help testers find dead links, images on a specifc page.

@@ -1,0 +1,8 @@
+/*not sure why but using the generic css selector for the body does not overide the css*/
+.body{
+	font-family: futura;
+}
+
+#main{
+	margin-top: 20%;
+}
