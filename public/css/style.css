@@ -6,3 +6,8 @@
 #main{
 	margin-top: 20%;
 }
+
+.links{
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+}

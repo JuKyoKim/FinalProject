@@ -7,29 +7,42 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<!-- CHECK OUT ANIMATE CSS! https://github.com/daneden/animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
+	<!-- check out the angular loading bar for http https://github.com/chieffancypants/angular-loading-bar -->
+	<link rel="stylesheet" href="css/loading-bar.css">
 </head>
 <!-- this entire app will only require 1 controller, since its a very basic ajax call, after its just angular handling class changes -->
 <body class="body" ng-controller="spiderCtrl as spooder">
 	
-	<div id="main" class="container">
+	<div class="container" id="main">
 		<div class="container jumbotron col-sm-12 animated fadeIn">
 			<h1>Spooder Lonk!</h1>
 			<p>This app's main purpose is to help you find dead links on your deployed web apps</p>
 			<p>Input the URL you want to check, and try it out</p>
-			<p>(There are issues with how the requests are being made so not all links will appear on this page, at most you will see a good 140 links tops)</p>
-
-	    	<div class="input-group">
+			<p>(There are issues with how the requests are being made so not all links will appear on this page, at most you will see a good 90-95%)</p>
+			<p>NOTE: Remove the backslash! for more optimial results!</p>
+			<p>This app was mainly meant to be a basic API for testing purposes for more information <a href="https://github.com/JuKyoKim/FinalProject">click here</a></p>
+		
+			<form class="input-group" ng-submit="spooder.crawl()">
+	      		<input type="text" class="form-control" placeholder="http://www.associationforsoftwaretesting.org" ng-model="spooder.input" >
 	      		<span class="input-group-btn">
-	      			<button class="btn btn-default" type="button" ng-click="spooder.crawl()">SpooderMe!</button>
+	      			<button class="btn btn-default" type="button submit" value="submit">SpooderMe!</button>
 	      		</span>
-	      		<input type="text" class="form-control" placeholder="http://www.associationforsoftwaretesting.org" ng-model="input">
-	    	</div><!-- /input-group -->
-			<p>NOTE: Remove the backslash!</p>
+	    	</form>
+		</div>
+	</div>
+
+	<div class="container" id="resultPanel">
+		<div class="container">
+			<h3>{{spooder.message}}{{spooder.data.linksFound.length}}</h3>
+		</div>
 			
-			<div class="container" id="resultPanel">
+		<div ng-repeat="links in spooder.data.linksFound">
+			<div class="animated fadeIn list-group">
+				<li class="list-group-item">
+					<span class="badge">status code: {{links.statusCode}}</span>
+					<p class="links">url hit: <a href="{{links.aHref}}">{{links.aHref}}</a></h4>
+				</li>
 			</div>
-
-
 		</div>
 	</div>
 		
@@ -38,6 +51,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 	<script src="js/app.js"></script>
+	<script src="js/ng-ctrl/loading-bar.js"></script>
 	<script src="js/ng-ctrl/opiliones.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@ var express = require('express'),
 app     	= express(),
 cheerio		= require('cheerio'),
 bodyParser 	= require("body-parser"),
-fs 			= require('fs'),
+fs 			= require('fs'), /* was going to use*/
 rp 			= require('request-promise');
 
 //body parser
@@ -15,12 +15,14 @@ app.listen(3000, ()=> console.log("listening on 3000"));
 // server public files with express
 app.use(express.static(__dirname + '/public'));
 
+//the main api post
 app.post('/spider', function(req,res){
 	requestMain(req.body.url, function(data){
 		res.send(data);
 	})
 });
 
+//test route for ppls to look at
 app.get('/test',function(req,res){
 	requestMain("http://www.nick.com", function(data){
 		res.send(data);
@@ -60,22 +62,25 @@ function requestMain(url, cb){
 				})
 				.catch(function(error){
 					requestData.linksFound.push({"aHref": modUrl, "statusCode": error.statusCode, error: error});
-					console.log({"aHref": modUrl, "statusCode": response.statusCode});
+					console.log({"aHref": modUrl, "statusCode": error.statusCode});
 				});
 
             } // end of the if else statement that will set the newObj
 		},function(){
+			//when everything is donezo
 			console.log("donezo");
 		  	cb(requestData);
 		});
 
     })
     .catch(function(data){
+    	//catch the errors that are coming in
     	requestData.error = data;
     	cb(requestData);
     });
 }
 
+// modify the URLs that are coming in
 function checkLink(url, paramURL){
     if(paramURL !== undefined){
     	//do a check for the link and see if it contains the main links
@@ -87,6 +92,7 @@ function checkLink(url, paramURL){
     }
 }
 
+//for grabbing status code fast
 function requestStatusCode(url, cb){
 	rp({uri: url, resolveWithFullResponse: true })
 	.then(function(response){
@@ -97,9 +103,10 @@ function requestStatusCode(url, cb){
 	});
 }
 
-//This is lupus, but i needed to modify the timeinterval so it requests per 100ms
-//There is a huge issue with this since node's asynch will somehow force counter values to appear erratically
-//check it out here => https://github.com/rdegges/node-lupus
+//check out the source code here => https://github.com/rdegges/node-lupus
+//I modified the timeinterval so it requests per 100ms on lupus
+//There is a huge issue with this since node's asynch 
+//will sort of force a "done" status before the loop actually ends.
 function iterateAsynch(start, stop, cb, done) {
   var task, iterator;
   var current = start;
