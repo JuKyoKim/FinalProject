@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 //listed in on 3000
-app.listen(3000, ()=> console.log("listening on 3000"));
+app.listen(process.env.PORT || 5000)
 
 // server public files with express
 app.use(express.static(__dirname + '/public'));
