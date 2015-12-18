@@ -1,6 +1,6 @@
 #Final Project
 ###SpooderDeadLonks!
-The basic concept of this web application is to help testers find dead links on a specifc page.
+The basic concept of this web application is to help testers find dead links on a specifc page.[Link to website](https://warm-oasis-2618.herokuapp.com)
 
 ###version 1.0
 - currently only supports <a> tag recognition.
@@ -9,7 +9,7 @@ The basic concept of this web application is to help testers find dead links on 
 
 
 ###API usage instruction!
-- to use simply make a post request to blank.com/spider with:
+- to use simply make a post request to https://warm-oasis-2618.herokuapp.com/spider with:
     + {url: http://example.com}
 
 after a bit you will receive a json object with all the atags on that page along with the status code for each link.
